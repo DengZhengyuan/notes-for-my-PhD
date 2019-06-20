@@ -106,16 +106,22 @@ When edited a document in the directory,
     $ git commit "xxxxxx"
     $ git status
 \end{lstlisting}
-the first line is to add this document to the Git repository. And the second one is to submit the instruction of this or these document(s). The third line is to check the status of this directory.
+the first line is to add this document to the Git repository. 
+And the second one is to submit the instruction of this or these document(s). The third line is to check the status of this directory.
 
 \begin{lstlisting}[basicstyle=\small\conso]
     $ git reset --hard HEAD^
     $ git reset --hard <commit number>
     $ git reflog
 \end{lstlisting}
-The first line is to back the last version and the second line is to go to any version if enter the commit number. The third line is to show the every operations, which can find the commit number.
+The first line is to back the last version and the second line is to go to any version if enter the commit number. 
+The third line is to show the every operations, which can find the commit number.
 
-The folder saving the files is called ``working directory'', in this tutorial called ``learngit''. As for the ``.git'', we called it ``repository'' in Git. In the repository, there are stage and HEAD (master) two areas. The first on is like a cache region. When we add the files, they would appear in the stage. When we commit them, they would appear in the HEAD (master).
+The folder saving the files is called ``working directory'', in this tutorial called ``learngit''. 
+As for the ``.git'', we called it ``repository'' in Git. 
+In the repository, there are stage and HEAD (master) two areas. 
+The first on is like a cache region. When we add the files, they would appear in the stage. 
+When we commit them, they would appear in the HEAD (master).
 
 The code \texttt{git add <file>} is to put the file in the cache area, and the code \texttt{git commit -m "xxxx"} is to put the file in the repository.
 
@@ -127,7 +133,8 @@ is to show the differences between the file in the working area and the reposito
 \begin{lstlisting}[basicstyle=\small\conso]
     $ git checkout -- <file.xxx>
 \end{lstlisting}
-is to discard all the changes in the working area. If we have added the file, we can use the code
+is to discard all the changes in the working area. 
+If we have added the file, we can use the code
 \begin{lstlisting}[basicstyle=\small\conso]
     $ git reset HEAD <file.xxx>
 \end{lstlisting}
@@ -138,7 +145,8 @@ to discard the changes before commit and back to the working area.
     $ git rm <file.xxx>
     $ git commit ...
 \end{lstlisting}
-is to remove a file and remove from the cache area. When we remove the file from the folder, we can use \texttt{\$ git checkout -- <file.xxx>} to recover the file.
+is to remove a file and remove from the cache area. 
+When we remove the file from the folder, we can use \texttt{\$ git checkout -- <file.xxx>} to recover the file.
 
 \subsection{Part II - Remote Repository}
 Use the code,
