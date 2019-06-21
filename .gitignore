@@ -1,9 +1,8 @@
-notes for tools/main.pdf
-notes for tools/main.synctex.gz
-notes for tools/main.thmjiu
-.vscode/.DS_Store
-bibliography/main.pdf
-bibliography/main.thm
-bibliography/main.synctex.gz
-notes for tools/main.thm
-.DS_Store
+# windows
+*.DS_Store
+
+# TeX
+*.pdf
+*.synctex.gz
+*.thmjiu
+*main.thm
