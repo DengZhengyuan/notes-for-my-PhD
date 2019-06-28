@@ -1,4 +1,4 @@
-\documentclass[11pt]{article}
+\documentclass[11pt]{report}
 \usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
 \usepackage{graphicx}
 \usepackage{grffile}
@@ -88,9 +88,9 @@
 %----------------------------------------------------------------%
 %                                                                %
 %----------------------------------------------------------------%
-\section{Liao, Xuefeng's tutorial for Git}
+\chapter{Liao, Xuefeng's tutorial for Git}
 \url{https://www.liaoxuefeng.com/wiki/896043488029600}
-\subsection{Part I - Local Operations}
+\section{Part I - Local Operations}
 Create a null directory, and initialized it.
 \begin{lstlisting}[basicstyle=\small\conso]
     $ mkdir learngit
@@ -148,7 +148,7 @@ to discard the changes before commit and back to the working area.
 is to remove a file and remove from the cache area. 
 When we remove the file from the folder, we can use \texttt{\$ git checkout -- <file.xxx>} to recover the file.
 
-\subsection{Part II - Remote Repository}
+\section{Part II - Remote Repository}
 Use the code,
 \begin{lstlisting}[basicstyle=\small\conso]
     $ ssh-keygen -t rsa -C "youremail@example.com"
@@ -171,7 +171,7 @@ When we create a new repository at Github.com, we use
 \end{lstlisting}
 to clone the remote files to local.
 
-\subsection{Part III - Branch Management}
+\section{Part III - Branch Management}
 There are codes,
 \begin{lstlisting}[basicstyle=\small\conso]
     $ git branch <name>
@@ -189,7 +189,26 @@ means 1) create a new branch;
 6) delete the branch. 
 
 
-\section{Zhang, Hongliang's tutorial for UDF}
+\chapter{Zhang, Hongliang's tutorial for UDF}
 \url{https://www.youtube.com/playlist?list=PLELxZQTxWBkxhQGkM7SDSaLEjKMFIGpHt}
+\section{Lesson 1}
+In the UDF book, the chapter 2 introduces the kinds of Macros, which are about 90 to 100 DEFINE Macros. 
+The chapter 3 discusses the rules to write the Macros. 
+The parallelization is introduced in the chapter 7. 
+These three chapters are the most important.
+
+\subsection{Compilers}
+Common I/O functions,
+\begin{lstlisting}[basicstyle=\small\conso, language=C]
+    scanf (...)
+    printf (...)  /*** print to the cmd in the fluent ***/
+
+    fscanf (...)  /*** file scan ***/
+    fprintf (...)  /*** file print ***/
+\end{lstlisting}
+
+
+
+
 
 \end{document}
