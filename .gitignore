@@ -1,5 +1,6 @@
 # windows
 *.DS_Store
+.DS_Store
 
 # TeX
 *.pdf
