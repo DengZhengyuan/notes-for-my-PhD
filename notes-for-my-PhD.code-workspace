@@ -7,17 +7,6 @@
 	"settings": {
         "latex-workshop.latex.tools": [
             {
-                "name": "latexmk",
-                "command": "latexmk",
-                "args": [
-                    "-synctex=1",
-                    "-interaction=nonstopmode",
-                    "-file-line-error",
-                    "-pdf",
-                    "%DOC%"
-                ]
-            },
-            {
                 "name": "xelatex",
                 "command": "xelatex",
                 "args": [
@@ -29,6 +18,19 @@
                 ]
             },
             {
+                "name": "latexmk",
+                "command": "latexmk",
+                "args": [
+                    "-synctex=1",
+                    "-interaction=nonstopmode",
+                    "-file-line-error",
+                    "-pdf",
+                    "-outdir=%OUTDIR%",
+                    "%DOC%"
+                ],
+                "env": {}
+            },
+            {
                 "name": "pdflatex",
                 "command": "pdflatex",
                 "args": [
@@ -36,37 +38,46 @@
                     "-interaction=nonstopmode",
                     "-file-line-error",
                     "%DOC%"
-                ]
+                ],
+                "env": {}
             },
             {
                 "name": "bibtex",
                 "command": "bibtex",
                 "args": [
                     "%DOCFILE%"
-                ]
+                ],
+                "env": {}
             },
             {
                 "name": "makeindex",
                 "command": "makeindex",
                 "args": [
-                      "%DOCFILE%.nlo",
-                      "-s", 
-                      "nomencl.ist",
-                      "-o", 
-                      "%DOCFILE%.nls"
+                    "%DOCFILE%.nlo",
+                    "-s", 
+                    "nomencl.ist",
+                    "-o", 
+                    "%DOCFILE%.nls"
                 ]
             },
         ],
         "latex-workshop.latex.recipes": [
             {
-                "name": "xe -> xe",
+                "name": "xelatex",
                 "tools": [
                     "xelatex",
                     "xelatex"
                 ]
             },
             {
-                "name": "xe -> bib -> xe*2",
+                "name": "pdflatex",
+                "tools": [
+                    "pdflatex",
+                    "pdflatex"
+                ]
+            },
+            {
+                "name": "xe + bib",
                 "tools": [
                     "xelatex",
                     "bibtex",
@@ -75,19 +86,22 @@
                 ]
             },
             {
-                "name": "xe -> bib -> xe -> index -> xe",
+                "name": "pdf + bib",
+                "tools": [
+                    "pdflatex",
+                    "bibtex",
+                    "pdflatex",
+                    "pdflatex"
+                ]
+            },
+            {
+                "name": "xe + bib + index",
                 "tools": [
                     "xelatex",
                     "bibtex",
                     "xelatex",
                     "makeindex",
                     "xelatex"
-                ]
-            },
-            {
-                "name": "latexmk",
-                "tools": [
-                    "latexmk"
                 ]
             }
         ],
