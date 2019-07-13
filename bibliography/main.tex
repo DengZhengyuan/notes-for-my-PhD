@@ -1,51 +1,41 @@
 \documentclass[11pt]{report}
-\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
-\usepackage[utf8]{inputenc}
-\usepackage{grffile}
-\usepackage{longtable}
-\usepackage{wrapfig}
-\usepackage{rotating}
-\usepackage[normalem]{ulem}
-\usepackage{textcomp}
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry} 
+\usepackage[utf8]{inputenc} % Uses the utf8 input encoding
 % --------------- math --------------- %
 \usepackage{amssymb}
-\usepackage{amsmath}
-\usepackage{siunitx}
-% --------------- math --------------- %
-% --------------- figure --------------- %
-\usepackage{graphicx}
-\usepackage{ntheorem}
+\usepackage{amsmath} % For typesetting math
+\usepackage{siunitx} % SI unit
+\usepackage[version=4]{mhchem} % chemical
+\usepackage{bm} % bold and italia
+\usepackage{cancel}
+% ---------- figure and table ---------- %
+\usepackage{graphicx} % Required for including images
 \usepackage{subfigure}
-% --------------- figure --------------- %
-\usepackage{bm}
-\usepackage{capt-of}
+\usepackage{longtable}
+\usepackage{grffile} % Long caption ???
+\usepackage{rotating} % Rotate the figure or table
+\usepackage{booktabs} % Rules in table
+\usepackage{caption}
+% --------------- citing --------------- %
+% \usepackage{cite}
+\usepackage{natbib}
+% ---------------- fonts --------------- %
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{mathptmx}
+\usepackage{mathpazo} % Palatino
+% \usepackage{fontspec} % load OpenType fonts with xelatex
+% \usepackage{mathspec} % select fonts for mathematics with xelatex
+
+% \usepackage{xeCJK}
+\usepackage{ntheorem} % Introduce the theorem environment
 \usepackage{hyperref}
-\usepackage{booktabs}
-\usepackage{titlesec}
 \usepackage{multirow}
-\usepackage{listings}
+\usepackage{listings} % A source code printer
 \usepackage{flafter}
-\usepackage{indentfirst}
+\usepackage{indentfirst} % Para. indent at first line
 \usepackage{appendix}
 \usepackage{float}
-% --------------- citing --------------- %
-\usepackage{apacite}
-% \usepackage{cite}
-% \usepackage{natbib}
-% --------------- citing --------------- %
-\usepackage{url}
-% \usepackage{mathspec}
-\usepackage{caption}
-\usepackage{cancel}
-% \usepackage{times}
-\usepackage{mathptmx}
-% \usepackage{xeCJK}
-\usepackage{threeparttable}
-% \usepackage{fontspec}
-% --------------- chemistry --------------- %
-\usepackage[version=4]{mhchem}
-
-% -----------------------------------------
 
 %---------------------------------------------%
 
@@ -55,8 +45,6 @@
 
 \newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
 \newcommand{\etal}{\textit{et al}}
-\newcommand{\ox}{\mathrm{O_2}}
-\newcommand{\oz}{\mathrm{O_3}}
 
 \setlength\jot{10pt}
 
@@ -90,7 +78,7 @@
 %                                                                %
 %----------------------------------------------------------------%
 
-% \include{chap/Li-Wang-Liu}
+\include{chap/Li-Wang-Liu}
 
 \include{chap/kinetics}
 
@@ -102,7 +90,7 @@
 
 %---------------------------------------------%
 \newpage
-\bibliographystyle{apacite}
-\bibliography{bib}
+\bibliographystyle{apalike}
+\bibliography{bibliograph}
 
 \end{document}
