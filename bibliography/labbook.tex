@@ -12,7 +12,10 @@
 
 % --------- font --------- %
 \usepackage[utf8]{inputenc} % Uses the utf8 input encoding
-\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage[T1]{fontenc} 
+% Select the fonts with pdftex that will be conflict with xelatex
+% \usepackage{fontspec} 
+% Using the fonts in the system that should compiled by xelatex
 \usepackage{textcomp}
 \usepackage[osf]{mathpazo} % Palatino as the main font
 \linespread{1.05}\selectfont % Palatino needs some extra spacing, here 5% extra
@@ -37,11 +40,21 @@
 \usepackage[version=4]{mhchem} % chemical
 \usepackage{bm} % bold and italia
 \usepackage{cancel}
+\usepackage{amsthm} % edit theorem environment
+
+\theoremstyle{definition}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\newtheorem{example}{Example}
+\theoremstyle{plain}
+\newtheorem{definition}{Definition}
 
 % --------------- citing --------------- %
 \usepackage{natbib}
+% --------- coding environment --------- %
+\usepackage{listings}
 
 \usepackage{indentfirst} % Para. indent at first line
+\usepackage{url}
 
 \usepackage{etoolbox}
 \usepackage[norule]{footmisc} % Removes the horizontal rule from footnotes
@@ -138,34 +151,31 @@
 
 \pagestyle{scrheadings} % Begin using headers
 
-%----------------------------------------------------------------------------------------
-%	LAB BOOK CONTENTS
-%----------------------------------------------------------------------------------------
-
-\include{chap/Li-Wang-Liu}
-
+%-----------------------------------------------
+%	BOOK CONTENTS
+%-----------------------------------------------
+\part{FLUIDIZATION}
+% \include{chap/Li-Wang-Liu}
 \include{chap/kinetics}
-
+% -------------------------------
+\part{FLUID MECHANISM}
 \include{chap/vector-calculus}
-
+% -------------------------------
+% \part{TOOLS}
+% \include{chap/git}
+% \include{chap/udf}
+% -------------------------------
+% \part{NOT USE}
 % \include{Thesises}
-
 % \include{Articles}
-
 % \include{Books}
 
-%----------------------------------------------------------------------------------------
- 
+%-----------------------------------------------
 \end{addmargin}
-
-%----------------------------------------------------------------------------------------
+%-----------------------------------------------
 %	BIBLIOGRAPHY
-%----------------------------------------------------------------------------------------
-
-% \newpage
+%-----------------------------------------------
 \bibliographystyle{apalike}
 \bibliography{bibliograph}
-
-%----------------------------------------------------------------------------------------
-
+%-----------------------------------------------
 \end{document}

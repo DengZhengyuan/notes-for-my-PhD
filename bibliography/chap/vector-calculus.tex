@@ -1,3 +1,83 @@
 \chapter{Vector Calculus}
-This chapter records the notes for vector calculus from \citet{matthews1998vector}.
+This chapter records the notes for vector calculus from a book by \citet{matthews1998vector}.
+
+\section{Vector Algebra}
+\subsection{Dot product}
+The dot product or scalar product of two vectors is a scalar quantity.
+\begin{equation}
+    \bm{a} \cdot \bm{b} = |\bm{a}| |\bm{b}| \cos \theta
+\end{equation}
+\begin{itemize}
+    \item $ \bm{a}\cdot \bm{b} = \bm{b}\cdot \bm{a} $.
+    \item The quantity $|\bm{b}|\cos \theta$ represents the component of the vector $\bm{b}$ in the direction of the vector $\bm{a}$.
+    \item $ \bm{a}\cdot \bm{b} = a_1 b_1 + a_2 b_2 + a_3 b_3 $.
+    \item $\bm{e}_1 \cdot \bm{e}_2 = 0$. 
+\end{itemize}
+    
+\subsection{Cross product}
+The cross product or vector product of two vectors is a vector quantity. 
+The magnitude is $|\bm{a}| |\bm{b}| \sin \theta$, and the direction is perpendicular to them in a right-handed sense. 
+Then,
+\begin{equation}
+    \bm{a} \times \bm{b} 
+    = |\bm{a}| |\bm{b}| \sin \theta\,\bm{u}
+    =   
+        \begin{vmatrix}
+            \bm{e}_1 & \bm{e}_2 & \bm{e}_3 \\
+            \bm{a}_1 & \bm{a}_2 & \bm{a}_3 \\
+            \bm{b}_1 & \bm{b}_2 & \bm{b}_3 
+        \end{vmatrix}
+\end{equation}
+where $\bm{u}$ is a unit vector perpendicular to them in a right-handed sense. 
+\begin{itemize}
+    \item $\bm{a} \times \bm{b} = - \bm{b} \times \bm{a}$.
+    \item $\bm{e}_1 \times \bm{e}_2 = 1$. 
+\end{itemize}
+
+\subsection{Scalar triple product}
+The scalar triple product is defined to be 
+\begin{equation}
+    \bm{a} \cdot (\bm{b} \times \bm{c})
+    =
+        \begin{vmatrix}
+            \bm{a}_1 & \bm{a}_2 & \bm{a}_3 \\
+            \bm{b}_1 & \bm{b}_2 & \bm{b}_3 \\
+            \bm{c}_1 & \bm{c}_2 & \bm{c}_3 
+        \end{vmatrix}
+    ,
+\end{equation}
+written $[\bm{a},\;\bm{b},\;\bm{c}]$. The brackets are unnecessary.
+
+\begin{itemize}
+    \item If any two of the vectors are equal, the scalar triple product is zero.
+    \item $ \bm{a} \cdot \bm{b} \times \bm{c}
+            = \bm{a} \times \bm{b} \cdot \bm{c} $.
+    \item $ \bm{a} \cdot \bm{b} \times \bm{c}
+            = \bm{b} \cdot \bm{c} \times \bm{a} 
+            = \bm{c} \cdot \bm{a} \times \bm{b} $.
+\end{itemize}
+
+\subsection{Vector triple product}
+The vector triple product is 
+$\bm{a} \times (\bm{b}\times \bm{c})$. 
+The brackets are important. 
+It can expanded as
+\begin{equation}
+    \bm{a} \times (\bm{b}\times \bm{c})
+    = (\bm{a} \cdot \bm{c}) \bm{b}
+    - (\bm{a} \cdot \bm{b}) \bm{c}.
+\end{equation}
+More information see page 16.
+
+\section{Line, Surface, and Volume Integrals}
+\subsection{Line integrals}
+\begin{example}
+    A particle moves along a curve path $C$ by force $\bm{F}(\bm{r})$. 
+    What is the total amount of work?
+    \begin{equation}
+        \lim_{N\to \infty} \sum_{i=1}^N \bm{F}_i \cdot \bm{dr}_i
+        = \int_C \bm{F} \cdot \bm{dr}.
+    \end{equation}
+    \qed
+\end{example}
 
