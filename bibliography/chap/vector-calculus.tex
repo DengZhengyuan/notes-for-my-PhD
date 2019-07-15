@@ -37,6 +37,8 @@ where $\bm{u}$ is a unit vector perpendicular to them in a right-handed sense.
 \subsection{Scalar triple product}
 The scalar triple product is defined to be 
 \begin{equation}
+    \bm{a} \cdot \bm{b} \times \bm{c}
+    =
     \bm{a} \cdot (\bm{b} \times \bm{c})
     =
         \begin{vmatrix}
@@ -73,6 +75,7 @@ More information see page 16.
 \subsection{Line integrals}
 \begin{example}
     A particle moves along a curve path $C$ by force $\bm{F}(\bm{r})$. 
+    $\bm{r}$ is the position vector, $\bm{r} = (x,\;y,\;z)$. 
     What is the total amount of work?
     \begin{equation}
         \lim_{N\to \infty} \sum_{i=1}^N \bm{F}_i \cdot \bm{dr}_i
@@ -80,4 +83,117 @@ More information see page 16.
     \end{equation}
     \qed
 \end{example}
+\paragraph{Evaluation.}
+Line integrals are evaluated by using a parameter, time ($t$), together with a formula giving the value of the position vector $\bm{r}$ in terms of $t$.
+\begin{equation}
+    \int_C \bm{F} \cdot \bm{dr}
+    = \int \bm{F} \cdot \frac{\bm{dr}}{dt} dt 
+\end{equation}
+where 
+\begin{equation}
+    \frac{\bm{dr}}{dt} 
+    = \left( \frac{dx}{dt},\; \frac{dy}{dt},\; \frac{dz}{dt} \right).
+\end{equation}
 
+Line integrals sometimes occur over curves that are close. 
+In this case, the integral is written using the symbol $\oint$. 
+
+\paragraph{Conservative vector fields. }
+\begin{definition}
+    Conservative vector fields. 
+    
+    A vector field $\bm{F}$ is said to be conservative if it has the property that the line integral of $\bm{F}$ around any closed curve $C$ is zero:
+    \begin{equation}
+        \oint_C \bm{F} \cdot \bm{dr} = 0.
+    \end{equation}
+    \qed
+\end{definition}
+The line integral of $\bm{F}$ along a curve only depends on the endpoints of the curve, not on the path taken by the curve.
+
+\paragraph{Other forms of line integrals. }
+\begin{equation}
+    \int_C \phi \bm{dr}
+    \quad \mathrm{and} \quad
+    \int_C \bm{F} \times \bm{dr}. 
+\end{equation}
+
+\subsection{Surface integrals}
+\begin{example}
+    Suppose that fluid flows with velocity $\bm{u}(\bm{r},t)$ through a pipe with $A$ cross-sectional area. 
+    What is the total volume of fluid passing through the pipe per unit time?
+    
+    Suppose the first case: the velocity is directed parallel to the walls of the pipe, with speed $|\bm{u}| = U_0$. 
+    In this case, the fluid moves along the pipe as if it were a solid block. 
+    In a time $t$, the fluid moves a distance $U_0 t$, so the volume is $U_0 t A$. 
+    Thus, the flow rate, or flux is 
+    \begin{equation}
+        Q = \frac{U_0 t A}{t} = U_0 A.  
+    \end{equation}
+
+    Suppose the second case: the velocity is again directed parallel to the walls, but the speed depends on the position within the pipe: 
+    $|\bm{u}| = U_0 (x,y)$.
+    Besides, the pipe has a square cross-section. 
+    Then, the surface element $dS = dx \, dy$. 
+    Thus, 
+    \begin{align}
+        dQ &= U_0(x,y) \, dS = U_0(x,y) \, dx\,dy, \\
+        \Longrightarrow \quad
+        Q &= \iint_S U_0(x,y) \, dx\,dy. 
+    \end{align}
+
+    In the case 1 and 2, the fluid flow direction is perpendicular to the surface. 
+    The third case where the vector field $\bm{u}$ and the surface $S$ are both arbitrary. 
+    Therefore, only the component of $\bm{u}$ perpendicular to $dS$ contributes to the flux across $dS$.
+    Here, it is necessary to introduce a normal vector $\bm{n}$ to the surface $dS$.
+    \textbf{The component of $\bm{u}$ perpendicular to $dS$ is then the component of $\bm{u}$ in the direction of $\bm{n}$, which is just $\bm{u} \cdot \bm{n}$.} 
+    Therefore, 
+    \begin{align}
+        dQ &= \bm{u} \cdot \bm{n} \, dS, \\
+        \Longrightarrow \quad
+        Q &= \iint_S \bm{u} \cdot \bm{n} \, dS. 
+    \end{align}
+
+    If the surface is closed, the integral could be written as 
+    \begin{equation}
+        \oiint_S \bm{u} \cdot \bm{n} \, dS.
+    \end{equation}
+
+    \qed 
+\end{example}
+
+\paragraph{Evaluation. }
+For the second case, if  the square surface given by 
+$0 \leq x \leq 1, \; 0 \leq y \leq 1$.
+\begin{equation}
+    Q = \iint_S U_0(x,y) \, dx\,dy 
+      = \int^1_0 \int^1_0 U_0(x,y) \, dx\,dy.
+\end{equation}
+
+For the third case, the surface $S$ is curved and can be written in terms of two parameters, $v$ and $w$, so the position vector $\bm{r} = \bm{r}(v,w)$. 
+To evaluate the surface integral we need an expression for $\bm{n} \, dS$. 
+The cross product of two vectors gives a vector perpendicular to both an with a magnitude equal to the area of the parallelogram create by two vectors. 
+Thus, 
+\begin{equation}
+    \iint_S \bm{u} \cdot \bm{n} \, dS
+    = \iint_S \bm{u} \cdot 
+    \frac{\partial \bm{r}}{\partial v} \times \frac{\partial \bm{r}}{\partial w} \, dv \, dw.
+\end{equation}
+
+\subsection{Volume integrals}
+\begin{example}
+    Suppose that an object of volume $V$ has a density $\rho$, and the density is a function of position, $\rho = \rho (\bm{r})$.
+    What is the total mass ($M$) of the object?
+    \begin{equation}
+        \iiint_V \rho dV 
+        = \lim_{N\to \infty} \sum^N_{i=1} \rho(\bm{r}_i)\,\delta V_i.
+    \end{equation}
+
+    Volume integrals can also be used to compute the volumes of objects, in which case $\rho =1$.
+    \begin{equation}
+        \iiint_V \bm{u} \, dV
+    \end{equation}
+    where $\bm{u}$ is a vector field.
+\end{example}
+
+\section{Partial Differentiation and Taylor Series}
+\subsection{Taylor series in more than one variable}
