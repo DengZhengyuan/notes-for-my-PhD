@@ -6,14 +6,16 @@
 \section{Pseudo kinetics}
 
 \section{Contact efficiency}
-
+In the work of \citet{li2011catalytic} and \citet{li2013catalytic}, the gas-solid contact efficiency, $\alpha$, is defined based on an ideal plug-flow reactor (PFR). 
+For the first-order reaction,
 \begin{equation}
     \frac{C}{C_0} 
     = \exp\left[ 
         -\frac{\alpha\,k_r\,\bar{\varepsilon}_s\, (1-\bar{\varepsilon}_s)\,H}{U_g} 
         \right]
-    = \exp\left[ -\alpha\,k'_r \right]
+    = \exp\left[ -\alpha\,Da \right]
 \end{equation}
+where $Da$ is the Damköhler number.
 
 \begin{definition}
     Damköhler number
@@ -21,3 +23,23 @@
     Damköhler number, $Da$, which is a dimensionless number that can give us a quick estimate of the degree of conversion that can be achieved in continuous flow reactors \citep{fogler2016element}.
     \qed
 \end{definition}
+
+In Li's work, this number represents the fraction of the external surface area of the catalysts available for the diffused reactant from the gas phase. 
+It can also be regarded as the utilization efficiency of catalysts in the CFB reactor compared to that in the PFR.  
+
+The overall $\alpha$ increase with the increasing $U_g$ and decreasing $G_s$ in the low density CFB downer. 
+Also, the $\alpha$ is less than 1 due to the negligible axial dispersion.
+
+Since the solids holdup vary at different axial positions, it is of interest to also know how the contact $\alpha$ changes with downer elevations. 
+Suppose the CFB downer consist of a series of PFR. 
+Mass balance gives
+\begin{align}
+    -V_c \, dC 
+    &= \alpha(k_r\, \bar{\varepsilon}_{s,r} V_c) \frac{dz}{Ug/(1-\bar{\varepsilon}_{s,r})}, \\
+    \Longrightarrow \quad
+    \alpha &= -
+    \frac{1}{(C k_r \bar{\varepsilon}_{s,r})} 
+    \frac{U_g}{(1-\bar{\varepsilon}_{s,r})} 
+    \frac{dC}{dz},
+\end{align}
+and $\alpha \propto - z$. 
