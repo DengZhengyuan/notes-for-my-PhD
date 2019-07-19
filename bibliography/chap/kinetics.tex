@@ -1,17 +1,133 @@
 \chapter{Kinetics}
-\section{Kinetics in ozone decomposition}
+% \section{Kinetics in ozone decomposition}
 
-\section{Kinetics in fluidized bed}
+% \section{Kinetics in fluidized bed}
 
-\section{Pseudo kinetics}
+% \section{Pseudo kinetics}
 
-\section{Contact efficiency}
-In the work of \citet{li2011catalytic} and \citet{li2013catalytic}, the gas-solid contact efficiency, $\alpha$, is defined based on an ideal plug-flow reactor (PFR). 
+\section{Reaction Models in CFB}
+The models are based on CSTR, PFR with internal and external mass transfer from \citet{jiang1991baffle}.
+
+\subsection{Original CSTR and PFR models}
+\paragraph{CSTR. }
+Balance in mole flow:
+$[\si{mol/s}]$
+\begin{equation*}
+    \mathrm{enters}-\mathrm{leaves}=\mathrm{accumulations}
+\end{equation*}
+\begin{equation}
+    U_g C_i A - U_g C_o A = V_t \, \frac{dC}{dt}
+    \label{eq: kinetics - original CSTR}
+\end{equation}
+where
+\begin{itemize}
+    \item $U_g$ $[\si{m/s}]$ is the superficial gas velocity;
+    \item $C$ $[\si{mol/m^3}]$ is the reactant concentration, and $i$, $o$ represent inlet and outlet, respectively;
+    \item $A$ $[\si{m^2}]$ is the cross-sectional area of the reactor;
+    \item $V_t$ $[\si{m^3}]$ is the total volume of the reactor.
+\end{itemize}
+
+\paragraph{PFR. }
+Balance in mole flow:
+$[\si{mol/s}]$
+\begin{equation*}
+    \mathrm{enters}-\mathrm{leaves}=\mathrm{accumulations}
+\end{equation*}
+\begin{align}
+    U_g A C|_z - U_g A C|_{z+\Delta z}
+     & = \Delta V \, \frac{\partial C}{\partial t} \\
+    \Longrightarrow \quad
+    U_g \, \frac{\partial C}{\partial z}
+     & = \frac{\partial C}{\partial t}.
+    \label{eq: kinetics - original PFR}
+\end{align}
+
+\subsection{CSTR and PFR models in CFB}
+The ozone decomposition reaction can be considered as isothermal pseudo-first-order irreversible reaction.
+In the CFB reactor, it reacts under steady state.
+
+There are also some assumptions:
+\begin{enumerate}
+    \item $U_g$ is constant.
+    \item Solid particles are spherical with mean diameter $d_p$.
+\end{enumerate}
+
+\subsubsection{Gas phase}
+The mole balance from CSTR and PFR can be used in the gas phase of CFB.
+The key point is the accumulation term, which mainly due to the external mass transfer in the gas phase.
+From the Fick's law:
+\begin{equation}
+    \bm{J} = -D \, \nabla \bm{C}
+\end{equation}
+where $\bm{J}\; [\si{\sfrac{mol}{m^2\, s}}]$ is the diffusion flux: the amount of substance per unit area per unit time; 
+$D \; \si{m/s}$ is the diffusivity.
+\begin{align*}
+    V_t\, \frac{\partial C}{\partial t} =
+    \underbrace{D\,\frac{(C_g-C_s)}{\delta}}_{\text{Fick's law}}
+    \underbrace{\alpha\, A_s}_{\substack{\text{available surface}\\ \text{area of particles}}} 
+    \frac{V_s}{V_s}\,\frac{V_t}{V_t}
+\end{align*}
+where $\delta$ is the film thickness.
+\begin{definition}
+    $k_s,\; a_s,\; \alpha,\;\varepsilon$.
+    \begin{itemize}
+        \item $k_s\; [\si{\sfrac{m^3}{m^2\,s}}] = \sfrac{D}{\delta}$ is the external mass transfer coefficient.
+        \item $a_s\; [\si{\sfrac{1}{m}}] = \sfrac{A_s}{V_s}$ is the surface area per unit volume of particle, for sphere is $\sfrac{6}{d_p}$.
+        \item $\alpha\; [-]$ is the contact efficiency factor, which is a fraction of the external surface area of catalysts available for the diffused ozone reactant from the gas phase:
+        \begin{align*}
+            \frac{\text{total particle surface area}}{\text{particle surface area available to contact with ozone}}
+        \end{align*}
+        \item $\varepsilon_s$ is the solid holdups.
+    \end{itemize}
+    \qed
+\end{definition}
+Consequently, 
+\begin{align}
+    \frac{\partial C}{\partial t} =
+    k_s \, a_s \, \alpha \, \varepsilon_s (C_g - C_s)
+    \label{eq: kinetics - accumulation term}
+\end{align}
+
+Substitute Eq.~\eqref{eq: kinetics - accumulation term} into Eq.~\eqref{eq: kinetics - original CSTR} and \eqref{eq: kinetics - original PFR}: 
+\begin{align}
+    \text{CSTR: }
+    & U_g\, C_{g,i} - U_g\, C_{g,o} 
+    = k_s \, a_s \, \alpha \, \varepsilon_s (C_g - C_s) H \\
+    \text{PFR: }
+    & U_g\,\frac{\partial C}{\partial z}
+    = k_s \, a_s \, \alpha \, \varepsilon_s (C_g - C_s)
+\end{align}
+
+\subsubsection{Solid phase}
+\begin{align*}
+    \text{external m. t.}
+    = 
+    \text{reaction with internal m. t.}
+    \qquad \left[\si{\frac{mol}{m^3\, s}}\right]
+\end{align*}
+\begin{align}
+    D\, \frac{(C_g - C_s)}{\delta}\, A_s
+    &= \eta \, k_v \, C_s \, V_s \\
+    \Longrightarrow \quad 
+    k_s \, a_s (C_g - C_s) 
+    &= k_v \, C_s \, \eta 
+\end{align}
+where $k_v\, [\si{1/s}]$ is the reaction constant based on the volume of catalyst particle; $\eta\; [-]$ is the internal mass transfer resistance.
+
+
+
+\newpage
+% --------------------------------------------------------------------
+%
+% --------------------------------------------------------------------
+
+\section{Contact Efficiency}
+In the work of \citet{li2011catalytic} and \citet{li2013catalytic}, the gas-solid contact efficiency, $\alpha$, is defined based on an ideal plug-flow reactor (PFR).
 For the first-order reaction,
 \begin{equation}
-    \frac{C}{C_0} 
-    = \exp\left[ 
-        -\frac{\alpha\,k_r\,\bar{\varepsilon}_s\, (1-\bar{\varepsilon}_s)\,H}{U_g} 
+    \frac{C}{C_0}
+    = \exp\left[
+        -\frac{\alpha\,k_r\,\bar{\varepsilon}_s\, (1-\bar{\varepsilon}_s)\,H}{U_g}
         \right]
     = \exp\left[ -\alpha\,Da \right]
 \end{equation}
@@ -24,22 +140,22 @@ where $Da$ is the Damköhler number.
     \qed
 \end{definition}
 
-In Li's work, this number represents the fraction of the external surface area of the catalysts available for the diffused reactant from the gas phase. 
-It can also be regarded as the utilization efficiency of catalysts in the CFB reactor compared to that in the PFR.  
+In Li's work, this number represents the fraction of the external surface area of the catalysts available for the diffused reactant from the gas phase.
+It can also be regarded as the utilization efficiency of catalysts in the CFB reactor compared to that in the PFR.
 
-The overall $\alpha$ increase with the increasing $U_g$ and decreasing $G_s$ in the low density CFB downer. 
+The overall $\alpha$ increase with the increasing $U_g$ and decreasing $G_s$ in the low density CFB downer.
 Also, the $\alpha$ is less than 1 due to the negligible axial dispersion.
 
-Since the solids holdup vary at different axial positions, it is of interest to also know how the contact $\alpha$ changes with downer elevations. 
-Suppose the CFB downer consist of a series of PFR. 
+Since the solids holdup vary at different axial positions, it is of interest to also know how the contact $\alpha$ changes with downer elevations.
+Suppose the CFB downer consist of a series of PFR.
 Mass balance gives
 \begin{align}
-    -V_c \, dC 
-    &= \alpha(k_r\, \bar{\varepsilon}_{s,r} V_c) \frac{dz}{Ug/(1-\bar{\varepsilon}_{s,r})}, \\
+    -V_c \, dC
+           & = \alpha(k_r\, \bar{\varepsilon}_{s,r} V_c) \frac{dz}{Ug/(1-\bar{\varepsilon}_{s,r})}, \\
     \Longrightarrow \quad
-    \alpha &= -
-    \frac{1}{(C k_r \bar{\varepsilon}_{s,r})} 
-    \frac{U_g}{(1-\bar{\varepsilon}_{s,r})} 
+    \alpha & = -
+    \frac{1}{(C k_r \bar{\varepsilon}_{s,r})}
+    \frac{U_g}{(1-\bar{\varepsilon}_{s,r})}
     \frac{dC}{dz},
 \end{align}
-and $\alpha \propto - z$. 
+and $\alpha \propto - z$.
