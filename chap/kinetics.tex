@@ -1,14 +1,16 @@
 \chapter{Kinetics}
-% \section{Kinetics in ozone decomposition}
-
-% \section{Kinetics in fluidized bed}
-
-% \section{Pseudo kinetics}
 
 \section{Reaction Models in CFB}
 The models are based on CSTR, PFR with internal and external mass transfer from \citet{jiang1991baffle}.
 
 \subsection{Original CSTR and PFR models}
+\begin{figure}[h!]
+    \raggedleft
+    \includegraphics{fig/CSTR+PFR}
+    \caption{Schematics of CSTR and PFR: the CSTR is on the left, and the right one is PFR; the blue lines represent the gas}
+    \label{fig: CSTR + PFR} 
+\end{figure}
+
 \paragraph{CSTR. }
 Balance in mole flow:
 $[\si{mol/s}]$
@@ -88,14 +90,16 @@ Consequently,
     \label{eq: kinetics - accumulation term}
 \end{align}
 
-Substitute Eq.~\eqref{eq: kinetics - accumulation term} into Eq.~\eqref{eq: kinetics - original CSTR} and \eqref{eq: kinetics - original PFR}: 
+Combination of Eq.~\eqref{eq: kinetics - original CSTR}, \eqref{eq: kinetics - original PFR}, and Eq.~\eqref{eq: kinetics - accumulation term}: 
 \begin{align}
     \text{CSTR: }
     & U_g\, C_{g,i} - U_g\, C_{g,o} 
-    = k_s \, a_s \, \alpha \, \varepsilon_s (C_g - C_s) H \\
+    = k_s \, a_s \, \alpha \, \varepsilon_s (C_g - C_s) H 
+    \label{eq: CSTR gas phase} \\ 
     \text{PFR: }
     & U_g\,\frac{\partial C}{\partial z}
-    = k_s \, a_s \, \alpha \, \varepsilon_s (C_g - C_s)
+    = k_s \, a_s \, \alpha \, \varepsilon_s (C_g - C_s) 
+    \label{eq: PFR gas phase}
 \end{align}
 
 \subsubsection{Solid phase}
@@ -111,8 +115,33 @@ Substitute Eq.~\eqref{eq: kinetics - accumulation term} into Eq.~\eqref{eq: kine
     \Longrightarrow \quad 
     k_s \, a_s (C_g - C_s) 
     &= k_v \, C_s \, \eta 
+    \label{eq: solid phase}
 \end{align}
 where $k_v\, [\si{1/s}]$ is the reaction constant based on the volume of catalyst particle; $\eta\; [-]$ is the internal mass transfer resistance.
+
+\subsubsection{Calculation}
+Rearrangement of Eq.~\eqref{eq: solid phase}:
+\begin{equation}
+    C_s = \frac{k_s\, a_s}{k_s\, a_s + k_v\,\eta}\, C_g
+    \label{eq: rearranged solid phase}
+\end{equation}
+
+Combination of Eq.~\eqref{eq: CSTR gas phase} and \eqref{eq: PFR gas phase}, and Eq.~\eqref{eq: rearranged solid phase}:
+\begin{align}
+    \text{CSTR:} \quad
+    & \frac{C_{g,o}}{C_{g,i}} = 1- X_\text{CSTR}
+    = \frac{1}{1+\alpha\, \dfrac{k_s\,\eta\,k_s\,a_s\,\varepsilon_s\,H}{U_g(k_s\, a_s + k_v\,\eta)}} \\
+    \text{PFR:} \quad
+    & U_g\,\frac{dC_{g}}{dz} + \frac{k_s\,a_s\,k_v\,\eta}{k_s\,a_s + k_v\,\eta}\,\alpha\,\varepsilon_s\,C_g = 0 \\
+    \Longrightarrow \quad 
+    & \frac{C_{g,o}}{C_{g,i}} = 1- X_\text{PFR}
+    = \exp \left[
+        -\alpha\, \dfrac{k_s\,\eta\,k_s\,a_s\,\varepsilon_s\,H}{U_g(k_s\, a_s + k_v\,\eta)}  
+    \right]
+\end{align}
+
+\paragraph{Damköhler number. }
+
 
 
 
