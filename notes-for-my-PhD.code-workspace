@@ -63,6 +63,15 @@
         ],
         "latex-workshop.latex.recipes": [
             {
+                "name": "pdf + bib",
+                "tools": [
+                    "pdflatex",
+                    "bibtex",
+                    "pdflatex",
+                    "pdflatex"
+                ]
+            },
+            {
                 "name": "xelatex",
                 "tools": [
                     "xelatex",
@@ -83,15 +92,6 @@
                     "bibtex",
                     "xelatex",
                     "xelatex"
-                ]
-            },
-            {
-                "name": "pdf + bib",
-                "tools": [
-                    "pdflatex",
-                    "bibtex",
-                    "pdflatex",
-                    "pdflatex"
                 ]
             },
             {
