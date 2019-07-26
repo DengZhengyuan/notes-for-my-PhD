@@ -6,7 +6,7 @@ The ozone decomposition reaction can be considered as isothermal pseudo-first-or
     (-\mathcal{R}) = -\frac{dC}{dt} = k\,C
 \end{align}
 where $(-\mathcal{R})$ is chemical reaction (ozone decomposition) rate, 
-and $k$ is reaction constant. 
+and $k \; [\si{1/m}]$ is reaction constant. 
 
 \section{Original CSTR and PFR models}
 \begin{figure}[h!]
@@ -77,7 +77,7 @@ Also, the assumptions for the homogeneous models are
     \item no internal and external mass transfer;
     \item the concentration of reactants and temperature at the surface of the particle is the same as the bulk gas phase.
 \end{enumerate}
-Under this circumstance, $k_v$ is defined as the reaction constant based on the catalyst volume. 
+Under this circumstance, $k_v\; [\si{m^3/(s\cdot m^3\;cat.)}]$ is defined as the reaction constant based on the catalyst volume. 
 Then, 
 \begin{equation}
     V \,(\mathcal{-R}) 
@@ -149,7 +149,7 @@ $A_s$ is the total surface area of the catalyst.
 Consequently, 
 \begin{align}
     \text{R.H.S.} =
-    k_s \, a_s \, \alpha \, \varepsilon_s (C_g - C_s)
+    k_s \, a_s \, \varepsilon_s (C_g - C_s)
     \label{eq: kinetics - accumulation term}
 \end{align}
 
@@ -157,11 +157,11 @@ Combination of Eq.~\eqref{eq: kinetics - original CSTR}, \eqref{eq: kinetics - o
 \begin{align}
     \text{CSTR: }
     & U_g\, C_{g,i} - U_g\, C_{g,o} 
-    = k_s \, a_s \, \alpha \, \varepsilon_s \,(1-\varepsilon_s) (C_g - C_s) H 
+    = k_s \, a_s \, \varepsilon_s \,(1-\varepsilon_s) (C_g - C_s) H 
     \label{eq: CSTR gas phase} \\ 
     \text{PFR: }
     & U_g\,\frac{\partial C}{\partial z}
-    = k_s \, a_s \, \alpha \, \varepsilon_s \,(1-\varepsilon_s) (C_g - C_s) 
+    = k_s \, a_s \, \varepsilon_s \,(1-\varepsilon_s) (C_g - C_s) 
     \label{eq: PFR gas phase}
 \end{align}
 
@@ -364,6 +364,7 @@ The expressions of homogeneous and heterogeneous will be the same.
 In the works of Li and Wang, as well as Liu, the internal diffusion and external diffusion are combined with the reaction constant based on the volume of catalyst to define a new apparent reaction constant. 
 By dividing Eq.~\eqref{eq: effection of i/d diffusion}, the real reaction constant could be calculated.
 
+\paragraph{DATA: July 23, 2019. }
 
 % --------------------------------------------------------------------
 %

@@ -46,8 +46,9 @@
 
 \theoremstyle{definition}
 \renewcommand{\qedsymbol}{$\blacksquare$}
-\newtheorem{example}{Example}
-\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}[chapter]
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{theorem}{Theorem}[chapter]
 
 % --------------- citing --------------- %
 \usepackage{natbib}
@@ -120,6 +121,7 @@
 
 \newcommand{\dint}{\displaystyle\int}
 \newcommand{\ig}{\mathrm{ig}}
+\newcommand{\bnabla}{\bm{\nabla}}
 \def\cels{\ensuremath{^\circ\hspace{-0.09em}\mathrm{C}}}
 
 \newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
@@ -158,10 +160,10 @@
 %-----------------------------------------------
 \part{FLUIDIZATION}
 % \include{chap/Li-Wang-Liu}
-\include{chap/kinetics}
+\include{chap/Analytical Reaction Models in Fluidized Bed}
 % -------------------------------
-% \part{FLUID MECHANISM}
-% \include{chap/vector-calculus}
+\part{FLUID MECHANICS}
+\include{chap/vector-calculus}
 % -------------------------------
 % \part{TOOLS}
 % \include{chap/git}

@@ -195,5 +195,168 @@ Thus,
     where $\bm{u}$ is a vector field.
 \end{example}
 
-\section{Partial Differentiation and Taylor Series}
+\section{Gradient, Divergence, and Curl}
 \subsection{Taylor series in more than one variable}
+For single variable,
+\begin{equation}
+\begin{aligned}
+    f(x) 
+    &= f(a)+(x-a) \frac{d f}{d x}(a)+\frac{(x-a)^{2}}{2 !} \frac{d^{2} f}{d x^{2}}(a)+\cdots \\
+    &= \sum^\infty_{n=0} \frac{(x-a)^n}{n!} \, \frac{d^n f}{dx^n}\,(a).
+\end{aligned}
+\end{equation}
+For $f(x,y)$, 
+\begin{equation}
+    \delta f
+    =\delta x \frac{\partial f}{\partial x}
+    +\delta y \frac{\partial f}{\partial y}
+    +\frac{(\delta x)^{2}}{2 !} \frac{\partial^{2} f}{\partial x^{2}}
+    +\frac{(\delta y)^{2}}{2 !} \frac{\partial^{2} f}{\partial y^{2}}
+    +\delta x \delta y \frac{\partial^{2} f}{\partial x \partial y}
+    +\cdots
+\end{equation}
+
+\subsection{Gradient of a scalar field}
+The gradient of a scalar field $f$ is a vector field, with a direction that is perpendicular to the level surface, pointing in the direction of increasing $f$, with a magnitude equal to the rate of change of $f$ in the direction. 
+\begin{equation}
+    \bnabla f=\frac{\partial f}{\partial x} \bm{e}_{1}+\frac{\partial f}{\partial y} \bm{e}_{2}+\frac{\partial f}{\partial z} \bm{e}_{3}
+\end{equation}
+
+To find the rate of change of $f$ in the direction of the unit vector $\bm{u}$, set $\bm{dr} = \bm{u} \,ds$ where $ds$ is the distance along $\bm{u}$. 
+Then, 
+\begin{equation}
+    \frac{d f}{d s}=\bnabla f \cdot \bm{u}.
+\end{equation}
+This called directional derivative of $f$.
+
+The symbol $\bnabla$ can be interpreted as a vector differential operator, 
+\begin{equation}
+    \bnabla=\left(\frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z}\right).
+\end{equation}
+
+\subsubsection{Conservative fields and potentials}
+There is a very important link between the gradient of a scalar field and a conservative vector field.
+
+\begin{theorem}
+    Suppose that a vector field $\bm{F}$ is related to a scalar field $\phi$ by $ \bm{F}=\bnabla \phi $ exists everywhere in some region $D$. 
+    Then $\bm{F}$ is conservative within $D$. 
+    Conversely, if $\bm{F}$ is conservative, then $\bm{F}$ can be written as the gradient of a scalar field, 
+    $ \bm{F}=\bnabla \phi $.
+    \qed
+\end{theorem}
+
+If a vector field $\bm{F}$ is conservative, the corresponding scalar field $\phi$ which obeys $ \bm{F}=\bnabla \phi $ is called the potential for $\bm{F}$.
+
+\subsection{Divergence of a vector field}
+The divergence of a vector field $\bm{u}$ is a scalar field. 
+Its value at a point $P$ is defined by 
+\begin{equation}
+    \mathrm{div} \,\bm{u}=\lim _{\delta V \to 0} 
+    \frac{1}{\delta V} \oiint_{\delta S} \bm{u} \cdot \bm{n} \,d S
+\end{equation}
+where $\delta V$ is a small volume enclosing $P$ with surface $\delta S$ and $\bm{n}$ is the outward pointing normal to $\delta S$. 
+
+In the Cartesian coordinator, 
+\begin{equation}
+    \begin{aligned}
+        \mathrm{div} \bm{u}
+        =\frac{\partial u_{1}}{\partial x}+\frac{\partial u_{2}}{\partial y}+\frac{\partial u_{3}}{\partial z}
+        = \left(\frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z}\right) \cdot\left(u_{1}, u_{2}, u_{3}\right)
+        = \bnabla \cdot \bm{u}.
+    \end{aligned}
+\end{equation}
+
+\paragraph{Physical interpretation. }
+Physically, this corresponds to the amount of flux of the vector field $\bm{u}$ out of $\delta V$ divided by the volume $\delta V$. 
+The physical definition of the divergence gives an intuitive meaning in terms of the flux of the vector field out of a small closed surface. 
+This can also be interpreted as the rate of `expansion' or `stretching' of the vector field. 
+
+\paragraph{Laplacian of a scalar field. }
+Suppose that a scalar field $\phi$ is twice differentiable. 
+\begin{equation}
+    \bnabla \cdot \bnabla \phi = \nabla^2 \phi
+\end{equation}
+is a new scalar field. 
+
+The formula for $\nabla^2 \phi$ can be found by combining the formulae for div and grad: 
+\begin{equation}
+    \begin{aligned}
+    \nabla^{2} \phi 
+    &=\frac{\partial}{\partial x}\left(\frac{\partial \phi}{\partial x}\right)
+    +\frac{\partial}{\partial y}\left(\frac{\partial \phi}{\partial y}\right)
+    +\frac{\partial}{\partial z}\left(\frac{\partial \phi}{\partial z}\right) \\ 
+    &=\frac{\partial^{2} \phi}{\partial x^{2}}+\frac{\partial^{2} \phi}{\partial y^{2}}+\frac{\partial^{2} \phi}{\partial z^{2}}. 
+    \end{aligned}
+\end{equation}
+This formula means the Laplacian of $\phi$ is just the sum of the second partial derivative of $\phi$. 
+The equation $\nabla^2 \phi = 0$ is known as Laplace's equation. 
+
+\subsection{Curl of a vector field}
+The curl of a vector field $\bm{u}$ is a vector field. Its component in the direction of the unit vector $\bm{n}$ 
+\begin{equation}
+    \bm{n} \cdot \mathrm{curl} \, \bm{u}
+    =\lim _{\delta S \to 0} 
+    \frac{1}{\delta S} 
+    \oint_{\delta C} \bm{u} \cdot \bm{d} \bm{r}, 
+\end{equation}
+where $\delta S$ is a small surface element perpendicular to $\bm{n}$, $\delta C$ is the closed curve forming the boundary of $\delta S$ and $\delta C$ and $\bm{n}$ are oriented in a right-handed sense. 
+\begin{equation}
+\begin{aligned}
+    \mathrm{curl} \, \bm{u}
+    &=\left(\frac{\partial u_{3}}{\partial y}-\frac{\partial u_{2}}{\partial z}, 
+    \frac{\partial u_{1}}{\partial z}-\frac{\partial u_{3}}{\partial x}, 
+    \frac{\partial u_{2}}{\partial x}-\frac{\partial u_{1}}{\partial y}\right) \\
+    &=  \begin{vmatrix}
+        {\bm{e}_{1}} & {\bm{e}_{2}} & {\bm{e}_{3}} \\ 
+        {\sfrac{\partial}{\partial x}} & {\sfrac{\partial}{\partial y}} & {\sfrac{\partial}{\partial z}} \\ 
+        {u_{1}} & {u_{2}} & {u_{3}}
+        \end{vmatrix} \\
+    &= \bnabla \times \bm{u}
+\end{aligned}
+\end{equation}
+
+\paragraph{Physical interpretation. }
+$\bnabla \times \bm{u}$ is related to the rotation or twisting of the vector field $\bm{u}$. 
+\begin{example}
+    For vector field $\bm{w} = (0,x,0)$ as the velocity of a fluid, $\bnabla \times \bm{w}= (0,0,1)$. 
+    Then a small particle placed in this fluid will rotate in an anticlockwise sense as it moves with the fluid, since at any point the velocity component in the y direction to the right of the particle is greater than that on the left. 
+    This rotation is about an axis in the z direction. 
+    Thus, the rate of rotation depends on the magnitude of $\bnabla \times \bm{w}$, and the axis of rotation is in the direction of $\bnabla \times \bm{w}$.
+    \qed
+\end{example}
+
+\paragraph{Curl and vonservative vector fields. }
+Any vector field that can be written as the gradient of a scalar field is irrotational:
+\begin{equation}
+    \bnabla \times \bnabla \phi=\mathbf{0}.  
+\end{equation}
+
+\section{Integral Theorems}
+\subsection{Divergence theorem}
+\begin{theorem}
+    Let $\bm{u}$ be a continuously differentiable vector field, defined in a volume $V$. 
+    Let $S$ be the closed surface forming the boundary of $V$ and let $\bm{n}$ be the unit outward normal to $S$. 
+    The the divergence theorem states that 
+    \begin{equation}
+        \iiint_{V} \bnabla \cdot \bm{u} \, d V
+        =\oiint_{S} \bm{u} \cdot \bm{n} \, d S .
+    \end{equation}
+    \qed
+\end{theorem}
+
+The divergence theorem is referred to as Gauss's theorem.
+Roughly speaking, the divergence theorem states that the total amount of expansion of $\bm{u}$ within the volume $V$ is equal to the flux of $\bm{u}$ out of the surface $S$. 
+
+There is a derivation of the law for conservation of mass of a fluid shows on the \cite[pg. 85]{matthews1998vector}. 
+
+\subsection{Stokes's theorem}
+Let $C$ be a closed curve which forms the boundary of a surface $S$. 
+Then for a continuously differentiable vector field $\bm{u}$, Stokes's theorem states that
+\begin{equation}
+    \iint_{S} \bnabla \times \bm{u} \cdot \bm{n} \, d S
+    =\oint_{C} \bm{u} \cdot \bm{dr},
+\end{equation}
+where the direction of the line integral around $C$ and the normal $\bm{n}$ are oriented in a right-handed sense. 
+
+
+\section{Cartesian Tensors}
