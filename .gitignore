@@ -9,4 +9,7 @@
 *.thm
 *.aux
 *.brf
+
+# figure 
 *.graffle
+*.ai

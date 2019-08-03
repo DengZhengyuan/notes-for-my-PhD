@@ -1,0 +1,458 @@
+\chapter{Governing Equation of Fluid Dynamics}
+\citet{anderson2008computational}.
+\section{Substantial Derivative}
+In cartesian space, the unit vectors along the $x$, $y$, and $z$ axes are $\bm{i}$, $\bm{j}$, and $\bm{k}$ in this chapter. 
+The vector velocity field in this cartesian space is given by 
+\begin{equation}
+    \bm{u}(x,y,z,t) = u\bm{i} + v\bm{j} + w\bm{k}. 
+\end{equation}
+The scalar density field is given by 
+\begin{equation}
+    \rho = \rho (x,y,z,t). 
+\end{equation}
+
+At time $t_1$, the infinitesimal fluid element is located at point 1. At a later time $t_2$, the same element has moved to point 2. Then, expand the density function in a Taylor series about point 1, 
+\begin{equation}
+\begin{aligned}
+    \rho_2 = 
+    \rho_1 
+    + \left(\frac{\partial \rho}{\partial x}\right)_1 (x_2 -x_1)
+    &+ \left(\frac{\partial \rho}{\partial y}\right)_1 (y_2 -y_1)
+    + \left(\frac{\partial \rho}{\partial z}\right)_1 (z_2 -z_1) \\
+    &+ \left(\frac{\partial \rho}{\partial t}\right)_1 (t_2 -t_1)
+    + (\text{high order terms}).
+\end{aligned}
+\end{equation}
+\begin{equation}
+\begin{aligned}
+    \frac{{D} \rho}{{D} t} &\equiv
+    \lim _{t_{2} \to t_{1}} 
+    \frac{\rho_{2}-\rho_{1}}{t_{2}-t_{1}} \\
+    &= \frac{\partial \rho}{\partial t}
+    +u \frac{\partial \rho}{\partial x}
+    +v \frac{\partial \rho}{\partial y}
+    +w \frac{\partial \rho}{\partial z} \\
+    &= \frac{\partial \rho}{\partial t}
+    +\bm{u} \cdot \grad \rho
+\end{aligned}
+\end{equation}
+
+\begin{definition}
+    Substantial derivative. 
+    \begin{equation}
+        \frac{{D} \phi}{{D} t} 
+        \equiv 
+        \frac{\partial \phi}{\partial t}
+        +\bm{u} \cdot \grad \phi
+    \end{equation}
+    where $\phi$ is a scalar field. 
+    $D/Dt$ called substantial derivative. 
+    Physically, it tracks the rate of change of a fluid element with respect to time. 
+    The first term called local derivative, which shows the rate of change at a fixed point; 
+    the second term called convective derivative, which shows the rate of change as the fluid element moving from a point to another point due to the non-uniformity of the flow distribution. 
+    \qed 
+\end{definition}
+
+\section{Physical Meaning of Divergence of Velocity}
+There is a constant mass fluid element with variables of density. 
+So, its volume and surface will change with time. 
+Consider an infinitesimal element of the surface $dS$ moving at the local velocity $\bm{u}$. 
+The change in the volume of the control volume, 
+\begin{equation}
+\begin{aligned}
+    \Delta V &= (\bm{u}\,\Delta t)\cdot \bm{n}dS \\
+    &= (\bm{u}\,\Delta t)\cdot \bm{dS}.
+\end{aligned}
+\end{equation}
+where $\bm{n}dS = \bm{dS}$ is the project area. 
+Then, the total change of volume of the whole control volume is 
+\begin{equation}
+    \oiint_S (\bm{u}\,\Delta t)\cdot \bm{dS}. 
+\end{equation}
+
+If this integral is divided by $\Delta t$, the result is physically the time rate of change of the control volume, which is 
+\begin{equation}
+    \frac{D V}{D t} =
+    \oiint_S \bm{u}\cdot \bm{dS}. 
+\end{equation}
+Applying the divergence theorem to it, 
+\begin{equation}
+    \frac{D V}{D t} =
+    \iiint_V \div \bm{u} \, dV. 
+\end{equation}
+Assume the control volume is shrunk to a very small volume, $\delta V$, 
+\begin{equation}
+\begin{aligned}
+    \frac{D(\delta V)}{Dt} 
+    &= \div \bm{u} \, \delta V \\
+    \div \bm{u} 
+    &= \frac{1}{\delta V}\, \frac{D(\delta V)}{Dt}.
+\end{aligned}
+\end{equation}
+Accordingly, the physical meaning of $(\div \bm{u})$ is shown in the right side, which is the time rate of change of the volume of a moving fluid element, per unit volume. 
+
+\section{The Continuity Equation}
+Fundamental physical principle: mass is conserved. 
+\subsection{The model of a moving fluid element}
+The mass of the fluid element is fixed, and is given by $\delta m$. 
+Then, 
+\begin{equation}
+    \delta m = \rho \, \delta V.
+\end{equation}
+Because the mass is fixed, which means it does not change with time, 
+\begin{align}
+    \frac{D(\delta m)}{Dt} &= 0, \\
+    \Longrightarrow \quad 
+    \frac{D(\rho\,\delta V)}{Dt} 
+    &= \delta V\,\frac{D\rho}{Dt} 
+    + \rho\, \frac{D(\delta V)}{Dt} = 0, \\
+    \Longrightarrow \quad 
+    \frac{D\rho}{Dt}
+    &+ \rho \left[
+        \frac{1}{\delta V}\, \frac{D(\delta V)}{Dt}
+        \right] \\
+    \Longrightarrow \quad 
+    \frac{D\rho}{Dt}
+    &+ \rho \,(\div \bm{u}) = 0.
+    \label{eq: continuity equation in non-conservation form}
+\end{align}
+Eq.~\eqref{eq: continuity equation in non-conservation form} is the continuity equation in non-conservation form. 
+
+\subsection{The model of a finite control volume fixed in space}
+The mass in the control volume is conserved, 
+\begin{equation}
+\begin{aligned}
+    \left(\substack{
+        \text{Net mass flow out of control} \\
+        \text{volume through surface }S}\right) 
+        &= 
+    \left(\substack{
+        \text{Time rate of decrease of} \\
+        \text{mass inside control volume}}\right), \\
+    B &= C.
+\end{aligned}
+\end{equation}
+Then, 
+\begin{align}
+    B &= \oiint_S \rho \, \bm{u} \cdot \bm{dS}, \\
+    C &= -\frac{\partial}{\partial t} 
+    \iiint_V \rho\, dV. 
+\end{align}
+Combine the above equations, 
+\begin{equation}
+    \frac{\partial}{\partial t} 
+    \iiint_V \rho\, dV 
+    + \oiint_S \rho \, \bm{u} \cdot \bm{dS} 
+    = 0.
+\end{equation}
+This is the integral form of the continuity equation, as well as in conservation form.
+
+If we apply the divergence theorem to the second term, 
+\begin{equation*}
+    \iiint_V \left[
+        \frac{\partial \rho}{\partial t}
+        + \div (\rho\,\bm{u})
+        \right]\,dV = 0
+\end{equation*}
+Then, the continuity equation on conservation form is 
+\begin{equation}
+    \frac{\partial \rho}{\partial t}
+    + \div (\rho\,\bm{u})
+    = 0. 
+    \label{eq: continuity equation on conservation form}
+\end{equation}
+
+\subsection{Transformation between two models}
+\begin{equation}
+    \div (\rho \, \bm{u}) 
+    \equiv 
+    \rho \, \div \bm{u}
+    + \bm{u} \cdot \grad \rho . 
+\end{equation}
+Then, the Eq.~\eqref{eq: continuity equation on conservation form} can be rewritten as 
+\begin{equation}
+    \frac{\partial \rho}{\partial t} 
+    + \rho \, \div \bm{u}
+    + \bm{u} \cdot \grad \rho
+    = \frac{D\rho}{Dt}
+    + \rho \,(\div \bm{u})
+    = 0, 
+\end{equation}
+which have same form with Eq.~\eqref{eq: continuity equation in non-conservation form}. 
+
+\section{The Momentum Equation}
+Physical principle: Newton's second law, 
+\begin{equation}
+    \bm{F} = m\, \bm{a}.
+    \label{eq: newton's second law}
+\end{equation}
+
+There are two sources of the force term, $\bm{F}$: 
+\begin{enumerate}
+    \item Body force, which act directly on the surface of the fluid element, such as gravitational, electric, and magnetic forces. 
+    \item Surface force, which act directly on the surface of the fluid element: a) pressure; b) shear and normal stress.
+\end{enumerate}
+
+\paragraph{Body force. }
+Let us consider the $x$-component of the forces: 
+\begin{equation}
+    (\text{body force}) = \rho \, f_x\, (dx\, dy\, dz).
+\end{equation}
+
+\paragraph{Surface force. }
+xxxxxxxxx
+
+\begin{figure}[h!]
+    \raggedleft
+    \includegraphics{fig/x-direc_forces_in_infinitesimal_fluid_element}
+    \caption{Infinitesimal fluid element with forces in $x$-direction}
+    \label{fig: infinitesimal fluid element with forces in x-direction}
+\end{figure}
+
+With the above in mind, for the moving fluid element, 
+\begin{equation}
+\begin{aligned}
+    \left(\substack{\text{Net surface force} \\
+                    \text{in }x\text{-direction}} \right)
+    &= \left[
+        p- \left( 
+            p+\frac{\partial p}{\partial x}\, dx 
+            \right)
+        \right] \, dy\,dz \\
+    &+ \left[
+            \left( 
+                \tau_{xx}
+                +\frac{\partial \tau_{xx}}{\partial x}\, dx 
+            \right)
+            - \tau_{xx}
+        \right] \, dy\,dz \\
+    &+ \left[
+            \left( 
+                \tau_{yx}
+                +\frac{\partial \tau_{yx}}{\partial y}\, dy 
+            \right)
+            - \tau_{yx}
+        \right] \, dx\,dz \\
+    &+ \left[
+            \left( 
+                \tau_{zx}
+                +\frac{\partial \tau_{zx}}{\partial z}\, dz 
+            \right)
+            - \tau_{zx}
+        \right] \, dx\,dy. 
+\end{aligned}
+\end{equation}
+Then, the total force in the $x$-direction is 
+\begin{equation}
+    F_x = \left(
+        -\frac{\partial p}{\partial x} 
+        +\frac{\partial \tau_{xx}}{\partial x}
+        +\frac{\partial \tau_{yx}}{\partial y}
+        +\frac{\partial \tau_{zx}}{\partial z}
+    \right) \, dx\,dy\,dz
+    + \rho\, f_x\, dx\,dy\,dz. 
+\end{equation}
+
+For the right-hand side of Eq.~\eqref{eq: newton's second law}, 
+\begin{equation}
+\begin{aligned}
+    m &= \rho \, dx\,dy\,dz, \\
+    a_x &= \frac{Du}{Dt}. 
+\end{aligned}
+\end{equation}
+
+Accordingly, we obtain the $x$-component of momentum equation for a viscous flow, which is Eq.~\eqref{eq: ns x non-conservation}. In a similar fashion, the $y$ and $z$ components can be obtained as Eq.~\eqref{eq: ns y non-conservation} and \eqref{eq: ns z non-conservation}.
+\begin{subequations}
+\begin{align}
+    \rho \, \frac{Du}{Dt}
+    = -\frac{\partial p}{\partial x}
+    +\frac{\partial \tau_{xx}}{\partial x}
+    +\frac{\partial \tau_{yx}}{\partial y}
+    +\frac{\partial \tau_{zx}}{\partial z}
+    + \rho\, f_x. 
+    \label{eq: ns x non-conservation} \\
+    \rho \, \frac{Dv}{Dt}
+    = -\frac{\partial p}{\partial y}
+    +\frac{\partial \tau_{xy}}{\partial x}
+    +\frac{\partial \tau_{yy}}{\partial y}
+    +\frac{\partial \tau_{zy}}{\partial z}
+    + \rho\, f_y, 
+    \label{eq: ns y non-conservation} \\
+    \rho \, \frac{Dw}{Dt}
+    = -\frac{\partial p}{\partial z}
+    +\frac{\partial \tau_{xz}}{\partial x}
+    +\frac{\partial \tau_{yz}}{\partial y}
+    +\frac{\partial \tau_{zz}}{\partial z}
+    + \rho\, f_z. 
+    \label{eq: ns z non-conservation} 
+\end{align}
+\label{eq: ns non-conservation} 
+\end{subequations}
+
+The three equations are partial differential equations obtained directly from an application of the fundamental physical principle to an infinitesimal fluid element. 
+Moreover, since this fluid element is moving with flow, the equations are in non-conservation form. 
+They are scalar equations, and are called the Navier-Stokes equations. 
+
+The Navier-Stokes equations can be obtained in conservation form as follows. 
+\begin{equation}
+\begin{aligned}
+    \frac{\partial (\rho \, u)}{\partial t} 
+    &= \rho\, \frac{\partial u}{\partial t}
+    + u\, \frac{\partial \rho}{\partial t}, \\
+    \rho\, \frac{\partial u}{\partial t} 
+    &= \frac{\partial (\rho \, u)}{\partial t} 
+    - u\, \frac{\partial \rho}{\partial t}. 
+    \label{eq: ns trans 1}
+\end{aligned}
+\end{equation}
+
+\begin{equation}
+\begin{aligned}
+    \grad\cdot (\rho\, u \, \bm{u}) 
+    &= \rho \, \bm{u} \cdot \grad u
+    + u\,\grad\cdot (\rho\,\bm{u}) \\
+    \rho \, \bm{u} \cdot \grad u
+    &= \grad\cdot (\rho\,u\, \bm{u}) 
+    - u\,\grad\cdot (\rho\,\bm{u}). 
+    \label{eq: ns trans 2}
+\end{aligned}
+\end{equation}
+
+Substitute the Eq.~\eqref{eq: ns trans 1} and \eqref{eq: ns trans 2} into the left-hand side of Eq.~\eqref{eq: ns x non-conservation}, 
+\begin{equation}
+\begin{aligned}
+    \rho\,\frac{Du}{Dt} 
+    &= \pdv{(\rho\,u)}{t}
+    - u\, \pdv{\rho}{t} 
+    + \div (\rho\,u \,\bm{u})
+    - u\, \div (\rho\, \bm{u}), \\
+    &= \pdv{(\rho\,u)}{t}
+    + \div (\rho\,u \,\bm{u}) 
+    -u\,
+    \underbrace{\cancelto{0}{\left[
+        \div (\rho\, \bm{u}) + \pdv{\rho}{t}
+    \right]}.}_\text{continuity equation}
+\end{aligned}
+\end{equation}
+Then, the Navier-Stokes equations in conservation form are 
+\begin{subequations}
+\begin{align}
+    \pdv{(\rho\,u)}{t}
+    + \div (\rho\,u \,\bm{u}) 
+    = -\frac{\partial p}{\partial x}
+    +\frac{\partial \tau_{xx}}{\partial x}
+    +\frac{\partial \tau_{yx}}{\partial y}
+    +\frac{\partial \tau_{zx}}{\partial z}
+    + \rho\, f_x, 
+    \label{eq: ns x conservation} \\
+    \pdv{(\rho\,v)}{t}
+    + \div (\rho\,v \,\bm{u})
+    = -\frac{\partial p}{\partial y}
+    +\frac{\partial \tau_{xy}}{\partial x}
+    +\frac{\partial \tau_{yy}}{\partial y}
+    +\frac{\partial \tau_{zy}}{\partial z}
+    + \rho\, f_y, 
+    \label{eq: ns y conservation} \\
+    \pdv{(\rho\,w)}{t}
+    + \div (\rho\,w \,\bm{u})
+    = -\frac{\partial p}{\partial z}
+    +\frac{\partial \tau_{xz}}{\partial x}
+    +\frac{\partial \tau_{yz}}{\partial y}
+    +\frac{\partial \tau_{zz}}{\partial z}
+    + \rho\, f_z. 
+    \label{eq: ns z conservation} 
+\end{align}
+\label{eq: ns conservation}
+\end{subequations}
+
+\subsection{Some definitions and notations}
+\subsubsection{Kronecker product and outer product}
+\paragraph{For matrixs. }
+In tensor, the Kronecker product, denoted by $\otimes$, is an operation on two matrices of arbitrary size resulting in a block matrix \citep{wiki:Kronecker}. 
+It is a generalization of the outer product (which is denoted by the same symbol) from vectors to matrices, and gives the matrix of the tensor product with respect to a standard choice of basis. 
+Kronecker product is different from cross product. 
+
+\begin{definition}
+    Kronecker product
+
+    If $\bm{A}$ is an $(m_1 \times m_2)$ matrix and $\bm{B}$ is a $(n_1 \times n_2)$ matrix, the Kronecker product $\bm{A} \otimes \bm{B}$ is the $(m_1\,n_1 \times m_2\, n_2)$ block matrix: 
+    \begin{equation}
+        \bm{A} \otimes \bm{B} = a_{ij}b_{kl} = 
+        \begin{pmatrix}
+            {a_{11} \bm{B}} & {a_{12} \bm{B}} & {\cdots} & {a_{1 m_{2}} \bm{B}} \\ 
+            {a_{21} \bm{B}} & {a_{22} \bm{B}} & {\cdots} & {a_{2 m_{2}} \bm{B}} \\ 
+            {\vdots} & {\vdots} & {\ddots} & {\vdots} \\ 
+            {a_{m_1 1} \bm{B}} & {a_{m_1 2} \bm{B}} & {\cdots} & {a_{m_1 m_2} \bm{B}}
+        \end{pmatrix}.
+    \end{equation}
+    \qed
+\end{definition}
+
+\paragraph{For vectors. }
+In linear algebra, the outer product of two coordinate vectors is a matrix. If the two vectors have dimensions $n$ and $m$, then their outer product is an $n \times m$ matrix \citet{wiki:outer_product}. 
+\begin{definition}
+    Outer product
+
+    Give two vectors, 
+    \begin{align}
+    \bm{u} &= \left(u_{1}, u_{2}, \cdots, u_{m}\right), \\ 
+    \bm{v} &= \left(v_{1}, v_{2}, \cdots, v_{n}\right). 
+    \end{align}
+    Their outer product $\bm{u} \otimes \bm{v}$ is defined as the $n \times m$ matrix $\bm{A}$ obtained by multiplying each element of $\bm{u}$ by each element of $\bm{v}$: 
+    \begin{equation}
+    \bm{u} \otimes \bm{v} =
+    u_i\,v_j =
+    \begin{pmatrix}
+        {u_{1} v_{1}} & {u_{1} v_{2}} & {\dots} & {u_{1} v_{n}} \\ 
+        {u_{2} v_{1}} & {u_{2} v_{2}} & {\dots} & {u_{2} v_{n}} \\ 
+        {\vdots} & {\vdots} & {\ddots} & {\vdots} \\ 
+        {u_{m} v_{1}} & {u_{m} v_{2}} & {\dots} & {u_{m} v_{n}}
+    \end{pmatrix}
+    \end{equation}
+    \qed
+\end{definition}
+Therefore, in the second term of Eq.~\eqref{eq: ns conservation}, 
+\begin{equation}
+\begin{aligned}
+    \rho\,\bm{u} \otimes \bm{u} = \rho\,
+    \begin{pmatrix}
+        uu & vu & wu \\
+        uv & vv & wv \\
+        uw & vw & ww 
+    \end{pmatrix}.
+\end{aligned}
+\end{equation}
+
+There are several equivalent terms and notations for outer product: 
+\begin{enumerate}
+    \item the dyalic product of two vector ia denoted by $\bm{a\,b}$, 
+    \item the tensor product of two vectors is denoted by $\bm{a} \otimes \bm{b}$. 
+\end{enumerate}
+
+\subsubsection{Cauchy stress tensor}
+In continuum mechanics, the Cauchy stress tensor $\bm{\sigma}$, true stress tensor, or simply called the stress tensor is a second order tensor named after Augustin-Louis Cauchy \citep{wiki:stresstensor}. 
+The tensor consists of nine components $\sigma _{ij}$ that completely define the state of stress at a point inside a material in the deformed state, placement, or configuration.
+\begin{equation}
+    \bm{\sigma} = 
+    \begin{pmatrix}
+        {\sigma_{x x}} & {\sigma_{x y}} & {\sigma_{x z}} \\
+        {\sigma_{y x}} & {\sigma_{y y}} & {\sigma_{y z}} \\ 
+        {\sigma_{z x}} & {\sigma_{z y}} & {\sigma_{z z}}
+    \end{pmatrix}
+    = 
+    \begin{pmatrix}
+        {p+ \tau_{xx}} & {\tau_{x y}} & {\tau_{x z}} \\ 
+        {\tau_{y x}} & {p+ \tau_{yy}} & {\tau_{y z}} \\ 
+        {\tau_{z x}} & {\tau_{z y}} & {p+ \tau_{zz}}
+    \end{pmatrix}, 
+\end{equation}
+where $\sigma_i$ is the normal stress, and $\tau_{ij}$ is the shear stress. 
+
+Then, we can rewrite the Eq.~\eqref{eq: ns non-conservation} and \eqref{eq: ns conservation} as 
+\begin{align}
+    \rho \, \frac{D \bm{u}}{D t}
+    &= -\grad p + \div \bm{\tau} + \rho \bm{g}, 
+    \\
+    \pdv{(\rho \, \bm{u})}{t} + \div (\rho \, \bm{u} \otimes \bm{u})
+    &= -\grad p + \div \bm{\tau} + \rho \bm{g}. 
+\end{align}

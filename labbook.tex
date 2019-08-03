@@ -43,6 +43,7 @@
 \usepackage{amsthm} % edit theorem environment
 \usepackage{esint} % kinds of integral signs
 \usepackage{xfrac}
+\usepackage[italicdiff]{physics}
 
 \theoremstyle{definition}
 \renewcommand{\qedsymbol}{$\blacksquare$}
@@ -126,7 +127,7 @@
 
 \newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
 \newcommand{\etal}{\textit{et al}}
-\setlength\jot{10pt}
+\setlength\jot{5pt}
 
 % ----------------------------------------------------------------------------
 
@@ -158,21 +159,18 @@
 %-----------------------------------------------
 %	BOOK CONTENTS
 %-----------------------------------------------
-\part{FLUIDIZATION}
+% \part{FLUIDIZATION}
 % \include{chap/Li-Wang-Liu}
-\include{chap/Analytical Reaction Models in Fluidized Bed}
+% \include{chap/analytical-reaction-models-in-fluidized-bed}
 % -------------------------------
 \part{FLUID MECHANICS}
 \include{chap/vector-calculus}
+\include{chap/governing-equation}
 % -------------------------------
 % \part{TOOLS}
 % \include{chap/git}
 % \include{chap/udf}
-% -------------------------------
-% \part{NOT USE}
-% \include{Thesises}
-% \include{Articles}
-% \include{Books}
+
 
 %-----------------------------------------------
 \end{addmargin}

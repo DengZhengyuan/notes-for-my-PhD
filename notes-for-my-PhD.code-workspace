@@ -108,7 +108,6 @@
         "latex-workshop.view.pdf.viewer": "tab",
         "latex-workshop.message.update.show": false,
         "latex-workshop.latex.recipe.default": "lastUsed",
-        "editor.fontFamily": "Iosevka, Fira Code",
         "editor.wordWrap": "bounded",
         "latex-workshop.latex.autoClean.run": "onBuilt",
         "editor.fontLigatures": true
