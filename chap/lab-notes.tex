@@ -1,0 +1,118 @@
+\chapter{Lab Notes}
+\section{Aug 13, 2019}
+This simulation is based on the case with $5\,\si{m/s}$ - $100\,\si{kg/(m^2 \cdot s)}$ in the CBF riser \citep{li2010}. 
+
+For the gas inlet, 
+\begin{equation}
+  \text{Gas inlet} = \frac{U_g}{\text{opening ratio}}.
+\end{equation}
+
+For the solid inlet, 
+\begin{equation}
+  \text{Solid inlet} = 
+  \frac{G_s\,A_{out}}{\rho_b\, \varepsilon_s \, A_{in}}.
+\end{equation}
+
+
+\begin{figure}[!ht]
+    \raggedleft
+    \includegraphics{fig/2d-planner-model}
+    \caption{The assumption and computation area of 2D planner}
+    \label{fig: assumption of 2D planner}
+\end{figure}
+
+\subsection{Mesh}
+\begin{figure}[!ht]
+    \raggedleft
+    \includegraphics{fig/simplify-of-cfb-riser}
+    \caption{Simplification of the CFB riser}
+    \label{fig: simplification of the CFB riser}
+\end{figure}
+
+First, the CFB riser is abstracted and simplified to 2D planner as shown in Figure~\ref{fig: simplification of the CFB riser}. 
+For the $y^+$ values calculated by air flow, when $y^+ = 5$, $\Delta S = \num{0.000326}$, when $y^+ = 1$, $\Delta S = \num{0.0000653}$. 
+The grid size should be ten to fifty times the particle diameter. 
+Thus, the mesh information is summarized in the Table~\ref{tab: mesh aug 13 2019}. 
+The total number of cells is $\num{59804}$. 
+% case mesh info.
+\begin{table}[!ht]
+    \raggedleft
+    \caption{Mesh information (Aug 13, 2019)}
+    \begin{tabular}{ccccccc}
+      \toprule
+      Edge \# & Nodes \# & Spacing 1 & Ratio 1 & Spacing 2 & Ratio 2 & Max \\
+      \midrule
+      \textcircled{1} & 55    & 0.0003 & 1.1   & 0.0003 & 1.1   & 0.0026 \\
+      \textcircled{2} & 35    & 0.0003 & 1.1   &       &       & 0.0028 \\
+      \textcircled{3} & 34    &       &       &       &       & 0.00308 \\
+      \textcircled{4} & 1000  & 0.003 & 1.01  &       &       & 0.00105 \\
+      \bottomrule
+    \end{tabular}%
+    \label{tab: mesh aug 13 2019}%
+\end{table}%
+
+\subsection{FLUENT setups}
+The specific FLUENT setups are summarized in Table~\ref{tab: setups aug 13 2019}.  
+% table of FLUENT case setups
+\begin{table}[htbp]
+  \centering
+  \caption{Case setups in ANSYS FLUENT (Aug 13, 2019)}
+    \begin{tabular}{cccc}
+      \toprule
+    \multicolumn{4}{p{43.665em}}{GENERAL} \\
+      \midrule
+    \multicolumn{4}{p{43.665em}}{Pressure-based; Transient; 2D-Plainner; Gravity: Y = -9.81} \\
+      \midrule
+    \multicolumn{4}{p{43.665em}}{MODEL} \\
+      \midrule
+    \multicolumn{1}{p{10em}}{Multiphase} & \multicolumn{1}{p{14.415em}}{Volume fraction parameter} & \multicolumn{1}{p{11.25em}}{formulation: implicit} &  \\
+          & \multicolumn{1}{p{14.415em}}{Phase 1} & \multicolumn{1}{p{11.25em}}{air} &  \\
+          & \multicolumn{1}{p{14.415em}}{Phase 2} & \multicolumn{1}{p{11.25em}}{FCC} &  \\
+          &       & \multicolumn{1}{p{11.25em}}{Granular viscosity} & \multicolumn{1}{p{8em}}{Gidaspow} \\
+          &       & \multicolumn{1}{p{11.25em}}{Bulk viscosity} & \multicolumn{1}{p{8em}}{lun et al} \\
+          &       & \multicolumn{1}{p{11.25em}}{Granular temperature} & \multicolumn{1}{p{8em}}{Algebraic} \\
+          &       & \multicolumn{1}{p{11.25em}}{Solid pressure} & \multicolumn{1}{p{8em}}{lun et al} \\
+          &       & \multicolumn{1}{p{11.25em}}{Radial distribution} & \multicolumn{1}{p{8em}}{lun et al} \\
+          &       & \multicolumn{1}{p{11.25em}}{Elasticity modulus} & \multicolumn{1}{p{8em}}{Derived} \\
+          &       & \multicolumn{1}{p{11.25em}}{Packing limit} & \multicolumn{1}{l}{0.63} \\
+          & \multicolumn{1}{p{14.415em}}{Phase interaction} & \multicolumn{1}{p{11.25em}}{Virtual mass modeling, coefficient} & \multicolumn{1}{l}{0.5} \\
+          &       & \multicolumn{1}{p{11.25em}}{Drag} & \multicolumn{1}{p{8em}}{Syamlal-O'Brian} \\
+          &       & \multicolumn{1}{p{11.25em}}{Collisions restitution coefficient} & \multicolumn{1}{l}{0.9} \\
+    \multicolumn{1}{p{10em}}{Viscous model} & \multicolumn{1}{p{14.415em}}{k-varepsilon} &       &  \\
+          & \multicolumn{1}{p{14.415em}}{enhanced wall treatment} &       &  \\
+          & \multicolumn{1}{p{14.415em}}{turbulence multiphase model} & \multicolumn{1}{p{11.25em}}{dispersed} &  \\
+    \multicolumn{1}{p{10em}}{Material} & \multicolumn{1}{p{14.415em}}{air} &       &  \\
+          & \multicolumn{1}{p{14.415em}}{FCC} & \multicolumn{1}{p{11.25em}}{fluid; density = 1370} &  \\
+      \midrule
+    \multicolumn{4}{p{43.665em}}{BOUNDARY CONDITIONS} \\
+      \midrule
+    \multicolumn{1}{p{10em}}{Gas inlet} & \multicolumn{1}{l}{5} &       &  \\
+    \multicolumn{1}{p{10em}}{Turbulence specification method} & \multicolumn{1}{p{14.415em}}{intensity \& hydiaulic diameter} & \multicolumn{1}{p{11.25em}}{5\%; 0.037} &  \\
+    \multicolumn{1}{p{10em}}{Solid inlet} & \multicolumn{1}{l}{0.273} &        &  \\
+          & \multicolumn{1}{p{14.415em}}{Granular temperature} & \multicolumn{1}{l}{0.0001} &  \\
+          & \multicolumn{1}{p{14.415em}}{Volume fraction parameter} & \multicolumn{1}{l}{0.1} &  \\
+    \multicolumn{1}{p{10em}}{Walls} & \multicolumn{1}{p{14.415em}}{Gas} & \multicolumn{1}{p{11.25em}}{no slip} &  \\
+          & \multicolumn{1}{p{14.415em}}{Solid} & \multicolumn{1}{p{11.25em}}{Specularity codfficient} & \multicolumn{1}{l}{0.0001} \\
+    \multicolumn{1}{p{10em}}{Outlet} & \multicolumn{1}{p{14.415em}}{outflow} &       &  \\
+    \midrule
+    \multicolumn{4}{p{43.665em}}{METHOD} \\
+    \midrule
+    \multicolumn{1}{p{10em}}{Phase coupled SIMPLE} &       &       &  \\
+    \multicolumn{1}{p{10em}}{Gradient} & \multicolumn{1}{p{14.415em}}{LS cell based} &       &  \\
+    \multicolumn{1}{p{10em}}{Momentum} & \multicolumn{1}{p{14.415em}}{2nd} &       &  \\
+    \multicolumn{1}{p{10em}}{Volume fraction} & \multicolumn{1}{p{14.415em}}{QUICK} &       &  \\
+    \multicolumn{1}{p{10em}}{Turbulent kinetic energy} & \multicolumn{1}{p{14.415em}}{2nd upwind} &       &  \\
+    \multicolumn{1}{p{10em}}{Turbulent dissipation rate} & \multicolumn{1}{p{14.415em}}{2nd upwind} &       &  \\
+    \midrule
+    \multicolumn{4}{p{43.665em}}{CONVERGENCE CRITERIA} \\
+    \midrule
+    \multicolumn{4}{p{43.665em}}{$5\times10^{-5}$} \\
+    \midrule
+    \multicolumn{4}{p{43.665em}}{TIME SIZE STEP } \\
+    \midrule
+    \multicolumn{4}{l}{0.0001} \\
+    \bottomrule
+    \end{tabular}%
+  \label{tab: setups aug 13 2019}%
+\end{table}%
+  

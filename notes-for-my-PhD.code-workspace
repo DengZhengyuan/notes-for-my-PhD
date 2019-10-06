@@ -110,6 +110,35 @@
         "latex-workshop.latex.recipe.default": "lastUsed",
         "editor.wordWrap": "bounded",
         "latex-workshop.latex.autoClean.run": "onBuilt",
-        "editor.fontLigatures": true
+        "editor.fontLigatures": true,
+        "editor.fontFamily": "Iosevka, Fira Code",
+        "editor.fontSize": 14,
+        "editor.renderWhitespace": "boundary",
+        "latex-workshop.latex.clean.fileTypes": [
+            "*.aux",
+            "*.bbl",
+            "*.blg",
+            "*.idx",
+            "*.ind",
+            "*.lof",
+            "*.lot",
+            "*.out",
+            "*.toc",
+            "*.acn",
+            "*.acr",
+            "*.alg",
+            "*.glg",
+            "*.glo",
+            "*.gls",
+            "*.ist",
+            "*.fls",
+            "*.log",
+            "*.fdb_latexmk",
+            "*.snm",
+            "*.nav",
+            "*.brf",
+            "*.gz",
+            "chap/*.aux"
+        ]
     }
 }

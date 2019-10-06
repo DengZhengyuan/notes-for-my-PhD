@@ -30,7 +30,7 @@
 \usepackage{longtable}
 % \usepackage{grffile} % Long caption ???
 \usepackage{rotating} % Rotate the figure or table
-\usepackage{caption}
+% \usepackage{caption}
 \usepackage{booktabs,array} % Packages for tables
 
 % --------------- math --------------- %
@@ -71,10 +71,10 @@
 \addtokomafont{chapter}{\color{OliveGreen}} % Lab dates in olive green
 \addtokomafont{section}{\color{Sepia}} % Sections in sepia
 \addtokomafont{pagehead}{\normalfont\sffamily\color{gray}} % Header text in gray and sans serif
-\addtokomafont{caption}{\footnotesize\itshape} % Small italic font size for captions
+\addtokomafont{caption}{\footnotesize} % Small font size for captions
 \addtokomafont{captionlabel}{\upshape\bfseries} % Bold for caption labels
 \addtokomafont{descriptionlabel}{\rmfamily}
-\setcapwidth[r]{7cm} % Right align caption text
+\setcapwidth[r]{.8\textwidth} % Right align caption text
 \setkomafont{footnote}{\sffamily} % Footnotes in sans serif
 
 \deffootnote[4cm]{4cm}{1em}{\textsuperscript{\thefootnotemark}} % Indent footnotes to line up with text
@@ -129,6 +129,9 @@
 \newcommand{\etal}{\textit{et al}}
 \setlength\jot{5pt}
 
+\numberwithin{table}{chapter}
+\numberwithin{figure}{chapter}
+
 % ----------------------------------------------------------------------------
 
 \begin{document}
@@ -150,6 +153,8 @@
 
 \printindex
 \tableofcontents % Table of contents
+\listoffigures
+\listoftables
 \newpage % Start on a new page
 
 \begin{addmargin}[4cm]{0cm} % Makes the text width much shorter for a compact look
@@ -159,9 +164,9 @@
 %-----------------------------------------------
 %	BOOK CONTENTS
 %-----------------------------------------------
-% \part{FLUIDIZATION}
+\part{FLUIDIZATION}
 % \include{chap/Li-Wang-Liu}
-% \include{chap/analytical-reaction-models-in-fluidized-bed}
+\include{chap/analytical-reaction-models-in-fluidized-bed}
 % -------------------------------
 \part{FLUID MECHANICS}
 \include{chap/vector-calculus}
@@ -170,7 +175,13 @@
 % \part{TOOLS}
 % \include{chap/git}
 % \include{chap/udf}
-
+% -------------------------------
+\part{LAB NOTES}
+\include{chap/lab-notes}
+% -------------------------------
+\part{ANNOTATIONS}
+\include{chap/books}
+\include{chap/articles}
 
 %-----------------------------------------------
 \end{addmargin}
